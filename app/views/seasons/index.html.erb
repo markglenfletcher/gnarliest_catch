@@ -1,0 +1,14 @@
+<h1>Listing seasons</h1>
+
+<%- if @seasons.empty? %>
+  <p>There are no seasons currently available.</p>
+<%- else %>
+  <p>There are <%= @seasons.count %> seasons available.</p>
+  <div id='seasons'>
+    <%- @seasons.each do |season| %>
+      <%= render 'season_short', season: season %>
+    <%- end %>
+  </div>
+<%- end %>
+
+<%= link_to 'Create new Season', new_season_path, :id => '#new_season' %>
