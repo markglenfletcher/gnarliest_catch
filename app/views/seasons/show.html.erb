@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_season_path(@season) %> |
-<%= link_to 'Back', seasons_path %>
+<div class='season'>
+  <div class='summary'>
+    <p class='starts_when'>This season starts <%= time_until_start_of(@season) %>
+    </p>
+  </div>
+  <p class='start_date'>Start Date: <%= start_date_for(@season) %>
+  </p>
+  <p class='duration'>Duration: <%= duration(@season) %></p>
+</div>

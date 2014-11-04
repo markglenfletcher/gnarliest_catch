@@ -22,12 +22,12 @@ RSpec.describe SeasonsController, :type => :controller do
   describe "GET show" do
     it "assigns the requested season as @season" do
       season = Season.create! valid_attributes
-      get :show, {:id => season.to_param}, valid_session
+      get :show, {id: season.to_param}, valid_session
       expect(assigns(:season)).to eq(season)
     end
 
     it 'redirect to index path when season doesnt exist' do
-      get :show, {:id => '123456'}, valid_session
+      get :show, {id: '123456'}, valid_session
       assert_redirected_to seasons_path
     end
   end

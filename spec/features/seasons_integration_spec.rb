@@ -26,7 +26,7 @@ feature 'User views a season' do
   scenario 'when the season exists' do
     season = create(:season)
     visit "/seasons/#{season.id}"
-    expect(find('p.starts_when')).to have_content("This season starts tomorrow")
+    expect(find('p.starts_when')).to have_content(/This season starts/)
     expect(find('p.start_date')).to have_content("Start Date: #{season.start_date.to_formatted_s(:long_ordinal)}")
     expect(find('p.duration')).to have_content("Duration: 7 days")
   end
