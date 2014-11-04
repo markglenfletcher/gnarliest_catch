@@ -2,30 +2,35 @@ require 'rails_helper'
 
 RSpec.describe SeasonsController, :type => :controller do
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for(:season)
   }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  # let(:invalid_attributes) {
+  #   skip("Add a hash of attributes invalid for your model")
+  # }
 
   let(:valid_session) { {} }
 
-  # describe "GET index" do
-  #   it "assigns all seasons as @seasons" do
-  #     season = Season.create! valid_attributes
-  #     get :index, {}, valid_session
-  #     expect(assigns(:seasons)).to eq([season])
-  #   end
-  # end
+  describe "GET index" do
+    it "assigns all seasons as @seasons" do
+      season = Season.create! valid_attributes
+      get :index, {}, valid_session
+      expect(assigns(:seasons)).to include(season)
+    end
+  end
 
-  # describe "GET show" do
-  #   it "assigns the requested season as @season" do
-  #     season = Season.create! valid_attributes
-  #     get :show, {:id => season.to_param}, valid_session
-  #     expect(assigns(:season)).to eq(season)
-  #   end
-  # end
+  describe "GET show" do
+    it "assigns the requested season as @season" do
+      season = Season.create! valid_attributes
+      get :show, {:id => season.to_param}, valid_session
+      expect(assigns(:season)).to eq(season)
+    end
+
+    it 'redirect to index path when season doesnt exist' do
+      get :show, {:id => '123456'}, valid_session
+      assert_redirected_to seasons_path
+    end
+  end
 
   # describe "GET new" do
   #   it "assigns a new season as @season" do

@@ -64,7 +64,11 @@ class SeasonsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_season
-      @season = Season.find(params[:id])
+      begin
+        @season = Season.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to seasons_path, notice: 'That season does not exist'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
